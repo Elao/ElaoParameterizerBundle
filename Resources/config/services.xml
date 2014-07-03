@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+
+        <parameter key="elao_parameterizer.inflector.class">Elao\Parameterizer\Inflector\Inflector</parameter>
+
+        <parameter key="elao_parameterizer.factory.class">Elao\Parameterizer\ParameterizerFactory</parameter>
+
+        <parameter key="elao_parameterizer.class">Elao\Parameterizer\Parameterizer</parameter>
+        <parameter key="elao_parameterizer.name">elao_parameterizer</parameter>
+
+        <parameter key="elao_parameterizer.pattern.class">Elao\Parameterizer\Pattern\Pattern</parameter>
+
+        <parameter key="elao_parameterizer.event_listener.request.class">Elao\Bundle\ParameterizerBundle\EventListener\RequestListener</parameter>
+
+        <parameter key="elao_parameterizer.twig.extension.dat_gui.class">Elao\Parameterizer\Twig\Extension\DatGuiExtension</parameter>
+
+    </parameters>
+
+    <services>
+
+        <service id="elao_parameterizer.inflector" class="%elao_parameterizer.inflector.class%" />
+
+        <service id="elao_parameterizer.factory" class="%elao_parameterizer.factory.class%">
+            <argument type="service" id="elao_parameterizer.inflector"/>
+        </service>
+
+        <service id="elao_parameterizer"
+             class="%elao_parameterizer.class%"
+             factory-service="elao_parameterizer.factory"
+             factory-method="create"
+        >
+            <argument>%elao_parameterizer.name%</argument>
+        </service>
+
+        <service id="elao_parameterizer.event_listener.request" class="%elao_parameterizer.event_listener.request.class%">
+            <argument type="service" id="elao_parameterizer"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="elao_parameterizer.twig.extension.dat_gui" class="%elao_parameterizer.twig.extension.dat_gui.class%">
+            <argument type="service" id="elao_parameterizer" />
+            <tag name="twig.extension" />
+        </service>
+
+    </services>
+
+</container>

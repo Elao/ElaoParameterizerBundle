@@ -1,0 +1,30 @@
+{
+    "name": "elao/parameterizer-bundle",
+    "type": "symfony-bundle",
+    "description": "Elao Parameterizer Bundle",
+    "keywords": ["elao", "parameterizer", "bundle"],
+    "homepage": "git@git.elao.fr:Elao/ElaoParameterizerBundle.git",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Elao",
+            "homepage": "http://www.elao.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle": "~2.4",
+        "elao/parameterizer": "1.0.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Elao\\Bundle\\ParameterizerBundle": "."
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "target-dir": "Elao/Bundle/ParameterizerBundle"
+}
