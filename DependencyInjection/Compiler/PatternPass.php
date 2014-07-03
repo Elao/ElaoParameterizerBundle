@@ -34,7 +34,6 @@ class PatternPass implements CompilerPassInterface
         $taggedServices = $container->findTaggedServiceIds($patternTag);
 
         foreach ($taggedServices as $definitionId => $attributes) {
-            $definition = $container->getDefinition($definitionId);
 
             foreach ($attributes as $attribute) {
 
