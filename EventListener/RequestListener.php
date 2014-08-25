@@ -49,7 +49,7 @@ class RequestListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            KernelEvents::REQUEST  => 'onKernelRequest',
+            KernelEvents::REQUEST  => array('onKernelRequest', 255),
             KernelEvents::RESPONSE => 'onKernelResponse'
         );
     }
